@@ -7,7 +7,7 @@ class Animal:
         return "Oi eu sou um animal!"
     
     def apresentar(self):
-        return f"Oi eu sou {self.nome} e tenho {self.idade} anos {self.falar}"
+        return f"Oi eu sou {self.nome} e tenho {self.idade} anos {self.falar()}"
     
 class Cachorro(Animal):
     def __init__(self, nome, idade):

@@ -32,7 +32,7 @@ if escolha==1:
     calculadora.areaCirculo(float(input("Insira a área: ")))
 elif escolha==2:
     calculadora.areaTriangulo(float(input("Insira a base do triângulo: ")),
-                              float(input("Insira a área do triângulo: ")))
+                                float(input("Insira a área do triângulo: ")))
 elif escolha==3:
     calculadora.hipotenusa(float(input("Insira o cateto A: ")),
-                           float(input("Insira o cateto B: ")))
+                            float(input("Insira o cateto B: ")))

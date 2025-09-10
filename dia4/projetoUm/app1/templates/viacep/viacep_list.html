@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Lista de Endereços Consultados</h2>
+
+    {% if enderecos %}
+        <ul>
+            {% for endereco in enderecos %}
+                <li>
+                    {{ endereco.cep }} - {{ endereco.rua }}, {{ endereco.bairro }}, {{ endereco.cidade }} - {{ endereco.estado }}
+                    [<a href="{% url 'viacep:detail' endereco.pk %}">Detalhes</a>]
+                    [<a href="{% url 'viacep:delete' endereco.pk %}">Excluir</a>]
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhum endereço foi consultado ainda.</p>
+    {% endif %}
+{% endblock %}

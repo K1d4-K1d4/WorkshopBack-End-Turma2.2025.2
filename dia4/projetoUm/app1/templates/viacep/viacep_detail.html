@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Detalhes do Endereço</h2>
+
+    <p><strong>CEP:</strong> {{ enderecos.cep }}</p>
+    <p><strong>Rua:</strong> {{ enderecos.rua }}</p>
+    <p><strong>Bairro:</strong> {{ enderecos.bairro }}</p>
+    <p><strong>Cidade:</strong> {{ enderecos.cidade }}</p>
+    <p><strong>Estado:</strong> {{ enderecos.estado }}</p>
+
+    <p>
+        <a href="{% url 'viacep:lista' %}">Voltar à lista</a> |
+        <a href="{% url 'viacep:delete' enderecos.pk %}">Excluir</a>
+    </p>
+{% endblock %}

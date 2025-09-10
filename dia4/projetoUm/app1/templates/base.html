@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>ViaCEP</title>
+</head>
+<body>
+    <header>
+        <h1>Consulta de Endereço via CEP</h1>
+        <nav>
+            <a href="{% url 'viacep:index' %}">Consulta</a> |
+            <a href="{% url 'viacep:lista' %}">Lista</a>
+        </nav>
+        <hr>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <hr>
+        <p>&copy; 2025 - Aplicação ViaCEP</p>
+    </footer>
+</body>
+</html>

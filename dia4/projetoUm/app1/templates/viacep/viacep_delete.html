@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Confirmar exclusão do endereço</h2>
+
+    <p>Você tem certeza que deseja excluir o endereço:</p>
+    <p><strong>{{ enderecos.cep }} - {{ enderecos.rua }}, {{ enderecos.bairro }}, {{ enderecos.cidade }} - {{ enderecos.estado }}</strong></p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmar Exclusão</button>
+        <a href="{% url 'viacep:lista' %}">Cancelar</a>
+    </form>
+{% endblock %}

@@ -16,7 +16,7 @@ class ViaCepFormView(FormView):
         cep = form.cleaned_data['cep']
         response = requests.get(f'http://viacep.com.br/ws/{cep}/json')
         
-        if response.status_code == 200:
+        if response.status_code == 200: 
             data = response.json()
             if "erro" not in data:
                 endereco = Endereco(

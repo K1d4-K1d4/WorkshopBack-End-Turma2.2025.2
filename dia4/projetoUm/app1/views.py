@@ -14,7 +14,7 @@ class ViaCepFormView(FormView):
 
     def form_valid(self,form): #Valida o formulário(assim no template é possível checar se deu certo, senão retorna um feedback de erro)
         cep = form.cleaned_data['cep']
-        response = requests.get(f'http://viacep.com.br/ws/{cep}/json', verify=False)
+        response = requests.get(f'http://viacep.com.br/ws/{cep}/json')
         
         if response.status_code == 200:
             data = response.json()
@@ -32,8 +32,44 @@ class ViaCepFormView(FormView):
                 return self.form_invalid(form)
             
         return super().form_valid(form) 
-              #super() é usado para fazer essa alteração na classe 
-               
+            #super() é usado para fazer essa alteração na classe 
+            
+        '''
+    def form_valid(self, form):
+        cep = form.cleaned_data['cep']
+        
+        try:
+            # ✅ Remova verify=False para ver erros reais
+            response = requests.get(f'http://viacep.com.br/ws/{cep}/json')
+            response.raise_for_status()  # ✅ Levanta exceção para erros HTTP
+            
+            data = response.json()
+            
+            if "erro" in data:
+                # ✅ CEP não encontrado na API
+                form.add_error('cep', f'CEP {cep} não encontrado nos Correios')
+                return self.form_invalid(form)
+            else:
+                # ✅ CEP válido - salva e redireciona
+                endereco = Endereco(
+                    cep=data.get('cep'),
+                    rua=data.get('logradouro'),
+                    bairro=data.get('bairro'),
+                    cidade=data.get('localidade'),
+                    estado=data.get('uf')
+                )
+                endereco.save()
+                return super().form_valid(form)
+                
+        except requests.exceptions.RequestException as e:
+            # ✅ Erro de conexão/HTTP
+            form.add_error('cep', f'Erro de conexão: {str(e)}')
+            return self.form_invalid(form)
+        except json.JSONDecodeError:
+            # ✅ Erro no formato da resposta
+            form.add_error('cep', 'Resposta inválida da API')
+            return self.form_invalid(form)
+        '''
 class ViaCepListView(ListView):
     template_name= "viacep/viacep_list.html"
     model= Endereco

@@ -1,3 +1,13 @@
 from django.db import models
 
 # Create your models here.
+
+class Endereco(models.Model):
+   cep = models.CharField(max_length=9)   
+   logradouro = models.CharField(max_length=255)
+   bairro = models.CharField(max_length=255)
+   localidade = models.CharField(max_length=255)
+   uf = models.CharField(max_length=2)
+   
+   def __str__(self):
+      return f"{self.cep} - {self.logradouro} - {self.bairro} - {self.localidade},{self.uf}"

@@ -1,5 +1,6 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.contrib import admin #Padrão do Django
+from django.urls import path, include #Padrão do Django + include para manipulação de urls
+#DjangoRestFramework:
 from rest_framework.routers import DefaultRouter
 from consulta.viewsets import EnderecoViewSet
 

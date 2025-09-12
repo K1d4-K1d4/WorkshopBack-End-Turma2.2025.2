@@ -1,7 +1,7 @@
 from rest_framework import viewsets #Importa as classes viewsets no arquivo
 from .models import Endereco #Importa o modelo criado na models.py
 from .serializers import EnderecoSerializer #Importa o modelo de formulário
-import requests #Requests é a biblioteca instalada para receber as informações da conexão com a API
+import requests #Requests é a biblioteca instalada para fazer requisições HTTP(responsável pelo contato com a API)
 
 #Viewsets são classes presentes no DjangoRest responsaveis por agrupar várias operações CRUD, assim com o uso de viewsets aumenta a complexidade do código mas se torna mais compacto e organizado.
 
@@ -20,7 +20,7 @@ class EnderecoViewSet(viewsets.ModelViewSet):
          if "erro" not in data:#Se não existir "erro"
          #o serializer irá adicionar salvar em si os dados pegos na requisição
             serializer.save(
-               cep=data.get('cep'),
+               logradouro=data.get('cep'),
                rua=data.get('logradouro'),
                bairro=data.get('bairro'),
                cidade=data.get('localidade'),
